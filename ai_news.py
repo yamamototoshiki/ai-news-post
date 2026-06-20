@@ -7,10 +7,16 @@ from google import genai
 CLIQ_WEBHOOK_URL = os.environ.get("CLIQ_WEBHOOK_URL")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
+#def get_ai_news():
+#    rss_url = "https://news.google.com/rss/search?q=生成AI+when:7d&hl=ja&gl=JP&ceid=JP:ja"
+#    feed = feedparser.parse(rss_url)
+#    return feed.entries[:2]
+
 def get_ai_news():
-    rss_url = "https://news.google.com/rss/search?q=生成AI+when:7d&hl=ja&gl=JP&ceid=JP:ja"
+    # ITmedia AI+のフィードを直接読み込む
+    rss_url = "https://rss.itmedia.co.jp/rss/core/aiplus.xml"
     feed = feedparser.parse(rss_url)
-    return feed.entries[:5]
+    return feed.entries[:2]  # 上位2件に絞り込み
 
 def generate_summary(title, link):
     client = genai.Client(api_key=GEMINI_API_KEY)
