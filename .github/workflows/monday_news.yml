@@ -1,0 +1,20 @@
+name: Monday AI News Bot
+on:
+  schedule:
+    - cron: '0 0 * * 1' # 毎週月曜の日本時間 朝9:00に実行
+  workflow_dispatch: # ←手動でテスト実行できるようにするための魔法の呪文
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: { python-version: '3.10' }
+      - name: Install dependencies
+        run: pip install requests feedparser google-genai
+      - name: Run script
+        env:
+          CLIQ_WEBHOOK_URL: ${{ secrets.CLIQ_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python ai_news.py
