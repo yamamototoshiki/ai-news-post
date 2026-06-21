@@ -21,7 +21,7 @@ def main():
 
     # 2. メッセージの作成とGeminiでの要約
     client = genai.Client(api_key=GEMINI_API_KEY)
-    message = "🛠️ 【週刊】Zenn 最新AI技術開発記事まとめ★\n\n"
+    message = "🛠️ 【週刊】最新AI技術開発記事まとめ★\n\n"
     
     for art in articles:
         clean_title = str(art.title).strip().replace('\n', '').replace('\r', '')
