@@ -16,7 +16,7 @@ def main():
     articles = feed.entries[:2]
     
     if not articles:
-        print("Zennから記事が取得できませんでした。")
+        print("記事の取得に失敗しました。")
         return
 
     # 2. メッセージの作成とGeminiでの要約
